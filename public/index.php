@@ -22,7 +22,11 @@ include("db_connect.php");
     <?php require("giaodien/slide_show.php"); ?>
 
     <h2>Sản phẩm nổi bật</h2>
+    <?php require("giaodien/product_top.php"); ?>
+    
+    <h2>Sản phẩm mới</h2>
     <?php require("giaodien/product_index.php"); ?>
+    
   </section>
 
   <?php require("giaodien/footer.php") ?>

@@ -48,9 +48,9 @@
 		<div class="col-md-4 col-sm-12">
             <h5>LIÊN HỆ</h5>
             <hr style="width: 70%;">
-			<p>Hotline:0399750925</p>
+			<p>Hotline:0399750XXX</p>
 			<p>(9h30 - 18h30 từ thứ 2 đến thứ 7)</p>
-			<p>Email: n.h.congtru1209@gmail.com</p>
+			<p>Email: emailaddress@gmail.com</p>
 			<p>Địa chỉ:Ninh Kiều, Cần Thơ, việt Nam</p>
 		</div>
 		<div class="col-md-3 col-sm-12">

@@ -39,7 +39,7 @@
   <header id="header">
 		<div class="row">
 			<div class=" col-md-5 col-sm-0" >
-				<h5 style="font-style: italic;font-weight: bold;color: #fff;">Hotline: 0399750925</h5>
+				<h5 style="font-style: italic;font-weight: bold;color: #fff;">Hotline: 0399750XXX</h5>
 			</div>
 			<div class="col-md-2 col-sm-5" >
 				<img src="images/Ilogo.png" style="width:100%">
