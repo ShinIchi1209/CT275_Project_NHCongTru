@@ -64,7 +64,7 @@
             white-space: nowrap;
         }
 
-        .product-description {
+        .product-price {
             font-size: 16px;
             color: #888;
             margin-bottom: 20px;
@@ -75,6 +75,20 @@
             object-fit: cover;
             border-radius: 10px;
             margin-bottom: 20px;
+        }
+
+        .more-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: black;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .more-button:hover {
+            background-color: #ddd;
         }
     </style>
 </head>
@@ -89,7 +103,7 @@
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo "<div class='product'>";
                     echo "<h3 class='product-title'>".$row['name']."</h3>";
-                    echo "<p class='product-description'>Giá: ".$row['price']."</p>";
+                    echo "<p class='product-price'>Giá: " . number_format($row['price']) . " VND</p>";
                     echo "<img src='images/product/".$row['image']."' class='product-img'>";
                     echo "  <form action='product.php?id=".$row['id']."' method='post'>
                                 <input class='product-button' type='submit' value='Xem chi tiết'>
@@ -98,7 +112,7 @@
                 }
             ?>
             <form action='all_product.php' method='post' class="d-flex justify-content-center align-items-center">
-            <input type='submit' value='Xem Thêm' class="product-button">
+            <input type='submit' value='Xem Thêm' class="more-button">
             </form>
         </div>
         <div class="arrow arrow-left">&lt;</div>

@@ -4,6 +4,14 @@ include("db_connect.php");
 
 ?>
 
+<style>
+  h2 {
+    text-align: center;
+    padding: 30px;
+    background-color:Orange;
+  }
+</style>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +28,7 @@ include("db_connect.php");
     <section>
 
     <h2>Tất cả sản phẩm</h2>
-    <?php require("giaodien/product_index.php"); ?>
+    <?php require("giaodien/all_product.php"); ?>
     </section>
 
     <?php require("giaodien/footer.php") ?>

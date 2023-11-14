@@ -4,12 +4,20 @@ include("db_connect.php");
 
 ?>
 
+<style>
+  h2 {
+    text-align: center;
+    padding: 30px;
+    background-color:Orange;
+  }
+</style>
 
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="icon" href="images/Ilogo.png" type="image/png" />  
   <title>Gear Tech</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="index.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
 

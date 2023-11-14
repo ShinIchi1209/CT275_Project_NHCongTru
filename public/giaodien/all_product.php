@@ -47,27 +47,12 @@
     .product-button:hover {
         background-color: #0056b3;
     }
-
-    .more-button {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: black;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
-
-    .more-button:hover {
-        background-color: #ddd;
-    }
-
 </style>
 
 <div class="product-list">
     
     <?php
-        $query = "SELECT * FROM bestseller";
+        $query = "SELECT * FROM products";
         $result = mysqli_query($conn, $query);
 
         // Hiển thị danh sách sản phẩm
@@ -75,15 +60,11 @@
             echo "<div class='product-box'>";          
             echo "<img src='images/product/".$row['image']."' alt='Product Image' class='product-image'>";
             echo "<h3 class='product-title'>".$row['name']."</h3>";          
-            echo "<p class='product-price'>Giá: " . number_format($row['price']) . " VND</p>";   
+            echo "<p class='product-price'>Giá: " . number_format($row['price']) . " VND</p>";  
             echo "<form action='product.php?id=".$row['id']."' method='post'>
                         <input type='submit' value='Xem chi tiết' class='product-button'>
                     </form>";
             echo "</div>";
         }
-
     ?>
-</div>
-<form action='all_product.php' method='post' class="d-flex justify-content-center align-items-center">
-    <input type='submit' value='Xem Thêm' class='more-button'>
-</form>
+</div>  
