@@ -4,13 +4,7 @@ include("db_connect.php");
 
 ?>
 
-<style>
-  h2 {
-    text-align: center;
-    padding: 30px;
-    background-color: Orange;
-  }
-</style>
+
 
 <!DOCTYPE html>
 <html>
@@ -25,8 +19,10 @@ include("db_connect.php");
 </head>
 
 <body>
-  <?php require("giaodien/header.php") ?>
-  <?php require("giaodien/navigation.php") ?>
+  <div class="container-fluid  ">
+    <?php require("db_connect.php") ?>
+    <?php require("giaodien/header.php") ?>
+    <?php require("giaodien/navigation.php") ?>
 
 
     <?php require("giaodien/slide_show.php"); ?>
@@ -39,7 +35,17 @@ include("db_connect.php");
 
 
 
-  <?php require("giaodien/footer.php") ?>
+    <?php require("giaodien/footer.php") ?>
+  </div>
+  <style>
+    h2 {
+      text-align: center;
+      padding: 30px;
+      background-color: Orange;
+    }
+  </style>
+
+  <script src="main.js"></script>
 </body>
 
 </html>

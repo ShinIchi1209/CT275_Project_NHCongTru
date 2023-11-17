@@ -1,71 +1,206 @@
+<nav class="navbar navbar-expand-lg navbar-light menu " id="navbar">
 
+    <img src="images/Ilogo.png" class="navbar-brand img-fluid  ">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link " href="index.php" style="color: #fff">TRANG CHỦ <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="all_product.php">
+                    SẢN PHẨM
+            </li>
+        </ul>
+        <div>
+            <form action="giaodien/search.php" method="post">
+                <input type="text" style="color: #333;" placeholder="Tìm Kiếm..." name="search_product">
+                <button class="btn btn-outline-success my-2 my-sm-0 openBtn  " type="submit" name="search_submit"><i class="fa fa-search  text-light"></i></button>
+            </form>
+        </div>
+        <div class="nav-item icon right" style="margin-right: 5ex;" onclick="showCartContainer()">
+            <a class="icon-button"><i class="fas fa-cart-plus"></i></a>
+        </div>
+    </div>
+</nav>
+<!--Search-->
+<!-- <div id="myOverlay" class="overlaysearch">
+    <span class="closebtn" onclick="closeSearch()" title="Đóng Tìm Kiếm">×</span>
+    <div class="overlay-content">
+        <form action="index.php?quanly=search" method="post">
+            <input type="text" style="font-weight: bold; color: #333;" placeholder="Tìm Kiếm..." name="search_product">
+            <button type="submit" name="search_submit"><i class="fa fa-search  text-light"></i></button>
+        </form>
+    </div>
+</div> -->
 <style>
-    nav {
-        background-color: #222222;
-    }
-
-    nav ul {
-        list-style-type: none;
-        margin: 0;
+    .container-fluid .menu {
+        position: sticky;
+        top: 0;
         padding: 0;
+        background: #333;
+        z-index: 8;
+
     }
 
-    nav ul li {
+    .container-fluid .menu .navbar-toggler {
+        background-color: #eee;
+        border: 2px solid #000;
+
+    }
+
+    .container-fluid nav a {
+        font-size: 19px;
+        font-weight: bold;
+        font-family: Time new Roman;
+        text-shadow: 0 0 1px #000000;
+    }
+
+    .container-fluid .menu .navbar-brand {
+        width: 3.4%;
+        margin: 0 2ex;
+        color: #ff0000;
+
+    }
+
+    .container-fluid .menu .collapse,
+    .container-fluid .menu .collapse .navbar-nav {
+        padding: 0;
+        margin: 0;
+
+    }
+
+    .container-fluid .menu .collapse .navbar-nav .nav-item {
+        height: 100%;
+        margin: 0 1.5ex;
+    }
+
+    .container-fluid .menu .collapse li.active {
+        background-color: #ff0000;
+    }
+
+    .container-fluid .menu .collapse .navbar-nav .nav-item .nav-link {
+        margin: 5px 0;
+        color: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+
+    }
+
+    .container-fluid .menu .collapse ul {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .container-fluid .menu .collapse ul li a:hover {
+        color: #fff;
+    }
+
+    .container-fluid nav div ul li:hover:not(.active) {
+        background-color: #4CAF50;
+
+    }
+
+    .dropdown {
+        position: relative;
         display: inline-block;
     }
 
-    nav ul li a {
-        display: block;
-        padding: 10px 20px;
-        text-decoration: none;
-        color: #dddd;
-    }
-
-    nav ul li a:hover {
-        background-color: #4CAF50;
-    }
-    nav ul li.search input {
-    padding: 5px;
-    border: none;
-    border-radius: 3px;
-    }
-
-    nav ul li.cart {
-        position: relative;
-    }
-
-    nav ul li.cart a {
-        display: block;
-        padding: 10px 20px;
-        text-decoration: none;
-        color: #dddd;
-    }
-
-    nav ul li.cart a:hover {
-        background-color: #4CAF50;
-    }
-
-    nav ul li.cart i {
-        margin-right: 5px;
-    }
-    nav ul li.right {
+    .openBtn {
+        cursor: pointer;
+        border: 1px solid #000;
+        border-radius: 3ex;
         float: right;
     }
+
+
+
+    .container-fluid .overlaysearch {
+        height: 100%;
+        width: 100%;
+        padding: 15%;
+        display: none;
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        animation: animatezoom 0.7s;
+        background-color: rgba(150, 150, 150, 0.88);
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+    }
+
+    .container-fluid .overlaysearch .overlay-content {
+        position: relative;
+        top: 15%;
+        width: 80%;
+        text-align: center;
+        margin-top: 5ex;
+        margin: auto;
+    }
+
+    .container-fluid .overlaysearch .closebtn {
+        position: absolute;
+        top: 0.8ex;
+        right: 0.8ex;
+        font-size: 7.2ex;
+        cursor: pointer;
+        color: #222;
+        text-shadow: 0 2px 1.5px #333;
+    }
+
+    .container-fluid .overlaysearch .closebtn:hover {
+        color: #ff0000;
+    }
+
+    .container-fluid .overlaysearch input[type=text] {
+        padding: 1.3ex;
+        font-size: 16px;
+        border: 1px solid #000;
+        float: left;
+        width: 80%;
+        background: white;
+    }
+
+    .container-fluid .overlaysearch input[type=text]:hover {
+        background: #f1f1f1;
+    }
+
+    .container-fluid .overlaysearch button {
+        float: left;
+        width: 20%;
+        padding: 1.3ex;
+        background: #0000ff;
+        font-size: 16px;
+        border: 1px solid #000;
+        cursor: pointer;
+    }
+
+    .container-fluid .overlaysearch button:hover {
+        background: #008000;
+    }
+
+    .fa-circle {
+        font-size: 1ch;
+        vertical-align: center;
+        margin-right: 8px;
+    }
+
+    .container-fluid .menu .icon .icon-button i.fas {
+        font-size: 3.3ex;
+        margin: 0.6ex;
+        text-shadow: none;
+        color: #fff;
+
+    }
+
+    .container-fluid nav .icon .icon-button i.fas:hover {
+        color: #ffff00;
+
+    }
+
+    .container-fluid nav div form button.btn {
+        border-radius: 7ex;
+        margin-right: 1ex;
+    }
 </style>
-
-
-<nav>
-    <ul>
-        <li><a href="index.php">Trang chủ</a></li>
-        <li><a href="all_product.php">Sản phẩm</a></li>
-        <li><a href="#">Giới thiệu</a></li>
-        <li><a href="#">Liên hệ</a></li>
-        <li class="search ">
-            <input type="text" placeholder="Tìm kiếm">
-        </li>
-        <li class="cart right">
-            <a href="cart.php"><i class="fas fa-shopping-cart"></i></a>
-        </li>
-    </ul>
-</nav>
-

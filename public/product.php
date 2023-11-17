@@ -10,9 +10,10 @@
 </head>
 
 <body>
-    <?php require("giaodien/header.php") ?>
-    <?php require("giaodien/navigation.php") ?>
-
+    <div class="container-fluid  ">
+        <?php require("giaodien/header.php") ?>
+        <?php require("giaodien/navigation.php") ?>
+    </div>
 
     <?php
     // Kết nối cơ sở dữ liệu

@@ -87,7 +87,7 @@ if (isset($_SESSION['mail_error']) && !empty($_SESSION['mail_error'])) $checkmai
           method: 'POST',
           data: $('#form-1').serialize(),
           success: function(response) {
-            if (response == 0) {
+            if (response === 0) {
               email_error.html("Email đã được đăng ký.Vui lòng chọn Email khác");
             } else email_error.html(""); //alert(response);
 
@@ -145,7 +145,8 @@ if (isset($_SESSION['mail_error']) && !empty($_SESSION['mail_error'])) $checkmai
           method: 'POST',
           data: $('#form-1').serialize(),
           success: function(response) {
-            if (response == 1) {
+            console.log(response);
+            if (response === 1) {
               alert("Đăng Ký Thành Công !!! ");
               window.location = "login.php";
             } else {
