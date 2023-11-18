@@ -6,9 +6,9 @@ function checkmail()
         include("../db_connect.php");
 
         //thuc hien truy van du lieu - chen du lieu vao database 2 bang taikhoan va khachhang
-        $checkemail = "SELECT * from taikhoan WHERE EMAIL='" . $email . "'  ";
+        $checkemail = "SELECT * from taikhoan WHERE EMAIL='".$email."'  ";
         $data = array();
-        $data = mysqli_fetch_array(mysqli_query($connect, $checkemail));
+        $data = mysqli_fetch_array(mysqli_query($conn, $checkemail));
         if ($data == null) {
             echo 1;
             exit();
@@ -18,3 +18,4 @@ function checkmail()
         }
     }
 }
+checkmail();

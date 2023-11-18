@@ -7,23 +7,17 @@ function register()
         $password = $_POST['password'];
         $password = md5($password);
         $email = $_POST['email'];
-        // $status=1;
-        include("./db_connect.php");
+        include("../db_connect.php");
 
         //thuc hien truy van du lieu - chen du lieu vao database 2 bang taikhoan va khachhang
         $checkemail = "SELECT * from taikhoan WHERE EMAIL='" . $email . "'  ";
         //echo $checkemail
         $query = "INSERT INTO taikhoan (TEN_DANG_NHAP,MAT_KHAU,EMAIL,STATUS)
                 VALUE('" . $username . "','" . $password . "','" . $email . "','1')";
-        $getMaTK = "SELECT MA_TK FROM `taikhoan` WHERE TEN_DANG_NHAP ='$username'";
-
         $data = array();
-        $data = mysqli_fetch_array(mysqli_query($connect, $checkemail));
+        $data = mysqli_fetch_array(mysqli_query($conn, $checkemail));
         if ($data == null) {
-            mysqli_query($connect, $query);
-            $MA_TK = mysqli_fetch_assoc(mysqli_query($connect, $getMaTK));
-            $query1 = "INSERT INTO khachhang (TEN_KH,EMAIL,MA_TK) VALUE('" . $username . "','" . $email . "','" . $MA_TK['MA_TK'] . "')";
-            $result = mysqli_query($connect, $query1);
+            mysqli_query($conn, $query);
             echo 1;
             exit();
         } else {

@@ -83,11 +83,12 @@ if (isset($_SESSION['mail_error']) && !empty($_SESSION['mail_error'])) $checkmai
         email_error.html("");
         //  kiểm tra email đăng ký hợp lệ hay chưa
         $.ajax({
-          url: './check_mail_register.php',
+          url: 'check_mail_register.php',
           method: 'POST',
           data: $('#form-1').serialize(),
           success: function(response) {
-            if (response === 0) {
+            console.log(response);
+            if (response == 0) {
               email_error.html("Email đã được đăng ký.Vui lòng chọn Email khác");
             } else email_error.html(""); //alert(response);
 
@@ -146,7 +147,7 @@ if (isset($_SESSION['mail_error']) && !empty($_SESSION['mail_error'])) $checkmai
           data: $('#form-1').serialize(),
           success: function(response) {
             console.log(response);
-            if (response === 1) {
+            if (response == 1) {
               alert("Đăng Ký Thành Công !!! ");
               window.location = "login.php";
             } else {

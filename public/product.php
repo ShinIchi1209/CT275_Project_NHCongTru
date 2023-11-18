@@ -1,3 +1,9 @@
+<?php
+session_start();
+include("db_connect.php");
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -31,6 +37,13 @@
     ?>
 
     <?php
+    if (isset($_GET['id'])) $id = $_GET['id'];
+    $getdetail = "SELECT * FROM products WHERE id=$id ";
+    $resultDetail = mysqli_query($connect, $getdetail);
+    $row_product_detail = mysqli_fetch_assoc($resultDetail);
+    $tensp = $row_product_detail['tensp'];
+    $percentSale = 0;
+    $IDsale = "";
     $sum = $row['soluong'];
     if ($sum > 0) {
         $checksoluong = "Còn Hàng";
@@ -54,7 +67,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-sm-12" style="padding-right: 6ex;">
-                <div class="text-center titleproduct"><?php echo $row['name'] ?></div>
+                <div class="text-center titleproduct"><?php echo $row['tensp'] ?></div>
                 <div class="price-chitiet">
                     <span>Giá bán:</span>
                     <strong style="color: red;font-size: 29px"> <?php echo number_format($row['price']); ?> VNĐ</strong>
@@ -68,14 +81,16 @@
                     <span style="text-decoration: underline;">Điểm nổi bật</span>
                     <p> <?php echo $row['description'] ?> </p>
                 </div>
-                <div class="qty-chitiet">
-                    <label class="qty-name font-weight-bold">SỐ LƯỢNG: </label>
-                    <div class="buttons_added">
-                        <input <?php echo $disableQuanlity; ?> style="cursor: pointer;" class="minus is-form" type="button" value="-" onclick="adjustQuanlity(this)">
-                        <input <?php echo $disableQuanlity; ?> aria-label="quantity" id="txQuanlity_detail" class="input-qty" min="1" name="quanlity" type="number" value=1 onchange="validateQuanlity(this)">
-                        <input <?php echo $disableQuanlity; ?> style="cursor: pointer;" class="plus is-form" type="button" value="+" onclick="adjustQuanlity(this)">
+                <form id="detailForm" action="<?php echo  $_SERVER['REQUEST_URI']; ?>" method="POST">
+                    <input type="hidden" name="cart" value="add" />
+                    <div class="qty-chitiet">
+                        <label class="qty-name font-weight-bold">SỐ LƯỢNG: </label>
+                        <div class="buttons_added">
+                            <input <?php echo $disableQuanlity; ?> style="cursor: pointer;" class="minus is-form" type="button" value="-" onclick="adjustQuanlity(this)">
+                            <input <?php echo $disableQuanlity; ?> aria-label="quantity" id="txQuanlity_detail" class="input-qty" min="1" name="quanlity" type="number" value=1 onchange="validateQuanlity(this)">
+                            <input <?php echo $disableQuanlity; ?> style="cursor: pointer;" class="plus is-form" type="button" value="+" onclick="adjustQuanlity(this)">
+                        </div>
                     </div>
-                </div>
                 </form>
                 <div class=" button-chitiet row">
                     <button type="button" <?php echo $disable ?> id="btAddCart" class="btn btn-outline-primary col-md-4  col-sm-12" value="add" style="float: left;" onclick="checkQuanlity()"><a style="    font-weight: bold;text-decoration: none;color: #3B0B39"> Thêm Vào Giỏ Hàng</a> </button>
@@ -108,6 +123,7 @@
                 document.getElementById("btAddCart").disabled = "";
         }
     </script>
+    <script src="main.js"></script>
 
     <style>
         /*detail*/

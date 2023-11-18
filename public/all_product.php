@@ -87,7 +87,7 @@ include("db_connect.php");
         while ($row = mysqli_fetch_assoc($result)) {
           echo "<div class='product-box'>";
           echo "<img src='images/product/" . $row['image'] . "' alt='Product Image' class='product-image'>";
-          echo "<h3 class='product-title'>" . $row['name'] . "</h3>";
+          echo "<h3 class='product-title'>" . $row['tensp'] . "</h3>";
           echo "<p class='product-price'>Giá: " . number_format($row['price']) . " VND</p>";
           echo "<form action='product.php?id=" . $row['id'] . "' method='post'>
                         <input type='submit' value='Xem chi tiết' class='product-button'>
@@ -108,6 +108,7 @@ include("db_connect.php");
       background-color: Orange;
     }
   </style>
+  <script src="main.js"></script>
 </body>
 
 </html>

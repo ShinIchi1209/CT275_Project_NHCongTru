@@ -1,3 +1,7 @@
+<?php
+include("giaodien/cart.php");
+include("giaodien/deliveryInfor.php");
+?>
 <nav class="navbar navbar-expand-lg navbar-light menu " id="navbar">
 
     <img src="images/Ilogo.png" class="navbar-brand img-fluid  ">
@@ -9,31 +13,28 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="all_product.php">
-                    SẢN PHẨM
+                    SẢN PHẨM</a>
             </li>
         </ul>
-        <div>
+        <div class="nav-item icon right">
             <form action="giaodien/search.php" method="post">
-                <input type="text" style="color: #333;" placeholder="Tìm Kiếm..." name="search_product">
+                <input class="search" type="text" style="color: #333;" placeholder="Tìm Kiếm..." name="search_product">
                 <button class="btn btn-outline-success my-2 my-sm-0 openBtn  " type="submit" name="search_submit"><i class="fa fa-search  text-light"></i></button>
             </form>
         </div>
-        <div class="nav-item icon right" style="margin-right: 5ex;" onclick="showCartContainer()">
+        <div class="nav-item icon " style="margin-right: 5ex;" onclick="showCartContainer()">
             <a class="icon-button"><i class="fas fa-cart-plus"></i></a>
         </div>
     </div>
 </nav>
-<!--Search-->
-<!-- <div id="myOverlay" class="overlaysearch">
-    <span class="closebtn" onclick="closeSearch()" title="Đóng Tìm Kiếm">×</span>
-    <div class="overlay-content">
-        <form action="index.php?quanly=search" method="post">
-            <input type="text" style="font-weight: bold; color: #333;" placeholder="Tìm Kiếm..." name="search_product">
-            <button type="submit" name="search_submit"><i class="fa fa-search  text-light"></i></button>
-        </form>
-    </div>
-</div> -->
 <style>
+    .search{
+        margin-top: 3px;
+    }
+    .right{
+        margin-left: 730px !important;
+    }
+
     .container-fluid .menu {
         position: sticky;
         top: 0;
@@ -100,84 +101,12 @@
 
     }
 
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
 
     .openBtn {
         cursor: pointer;
         border: 1px solid #000;
         border-radius: 3ex;
         float: right;
-    }
-
-
-
-    .container-fluid .overlaysearch {
-        height: 100%;
-        width: 100%;
-        padding: 15%;
-        display: none;
-        position: fixed;
-        z-index: 10;
-        top: 0;
-        left: 0;
-        animation: animatezoom 0.7s;
-        background-color: rgba(150, 150, 150, 0.88);
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-    }
-
-    .container-fluid .overlaysearch .overlay-content {
-        position: relative;
-        top: 15%;
-        width: 80%;
-        text-align: center;
-        margin-top: 5ex;
-        margin: auto;
-    }
-
-    .container-fluid .overlaysearch .closebtn {
-        position: absolute;
-        top: 0.8ex;
-        right: 0.8ex;
-        font-size: 7.2ex;
-        cursor: pointer;
-        color: #222;
-        text-shadow: 0 2px 1.5px #333;
-    }
-
-    .container-fluid .overlaysearch .closebtn:hover {
-        color: #ff0000;
-    }
-
-    .container-fluid .overlaysearch input[type=text] {
-        padding: 1.3ex;
-        font-size: 16px;
-        border: 1px solid #000;
-        float: left;
-        width: 80%;
-        background: white;
-    }
-
-    .container-fluid .overlaysearch input[type=text]:hover {
-        background: #f1f1f1;
-    }
-
-    .container-fluid .overlaysearch button {
-        float: left;
-        width: 20%;
-        padding: 1.3ex;
-        background: #0000ff;
-        font-size: 16px;
-        border: 1px solid #000;
-        cursor: pointer;
-    }
-
-    .container-fluid .overlaysearch button:hover {
-        background: #008000;
     }
 
     .fa-circle {
