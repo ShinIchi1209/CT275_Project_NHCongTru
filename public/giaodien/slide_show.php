@@ -1,31 +1,8 @@
-<style>
-    .slideshow-container {
-        position: relative;
-        max-width: 100%;
-        margin: auto;
-    }
-
-    .slideshow-container img {
-        width: 100%;
-        height: auto;
-    }
-
-    .slideshow-container .slide {
-        display: none;
-    }
-
-    .slideshow-container .slide.active {
-        display: block;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="css/slide_show.css">
 
 <div class="slideshow-container">
     <?php
-       $query = "SELECT * FROM slider WHERE active = '1' LIMIT 6 ";
-       $result = mysqli_query($conn, $query);
-       while ($row_slider = mysqli_fetch_assoc($result)) {
-           $images[] = $row_slider['src'];
-       }
+    $images = array("img1.png", "img2.png", "img3.png", "img4.png", "img5.png", "img6.png");
     ?>
     <?php foreach ($images as $index => $image) : ?>
         <?php $activeClass = ($index === 0) ? "active" : ""; ?>
@@ -34,7 +11,6 @@
         </div>
     <?php endforeach; ?>
 </div>
-
 <script>
     var slides = document.querySelectorAll('.slide');
     var currentSlide = 0;

@@ -1,52 +1,42 @@
-
 <?php
-      session_start();
-      $checklogin;
-     function login() { 
-         if(!empty($_POST) &&isset($_POST)){
-            $password =$_POST['password'];
-            $password=md5($password);
-            $email =$_POST['email'];
+session_start();
 
-          
-        $connect =new mysqli("localhost","root","","geartech");
-        $connect -> set_charset("utf8");
-        //kiem tra ket noi
-        if($connect->connect_error){
-            //var_dump($connect->connect_error);
-            die();
+function login()
+{
+    if (!empty($_POST) && isset($_POST)) {
+        $passwordl = $_POST['password'];
+        $email = $_POST['email'];
+        $passwordl = md5($passwordl);
+        require("../db_connect.php");
+
+        // Thực hiện truy vấn dữ liệu
+        $stmt = $conn->prepare("SELECT EMAIL, MAT_KHAU, TEN_DANG_NHAP FROM taikhoan WHERE EMAIL = :email AND MAT_KHAU = :password");
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $passwordl);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Lấy Tên Người Dùng
+        $usernamel = "";
+        foreach ($result as $row) {
+            $usernamel = $row['TEN_DANG_NHAP'];
         }
 
-        //thuc hien truy van du lieu - chen du lieu vao database
-        $query="SELECT  EMAIL, MAT_KHAU,TEN_DANG_NHAP FROM taikhoan WHERE EMAIL= '".$email."' AND MAT_KHAU ='".$password."'";
-        $checkname ="SELECT TEN_DANG_NHAP FROM taikhoan WHERE EMAIL= '".$email."' AND MAT_KHAU ='".$password."'";
-        $result=mysqli_query($connect,$query);
-        $resultname =mysqli_query($connect,$checkname);
-        //var_dump($result);
-        $data=array();
-        while($row = mysqli_fetch_array($result,1)){
-            $data[] =$row;
-        }
-        //Lấy Tên Người Dùng
-        $username = mysqli_fetch_assoc($resultname);
-        $name=$username['TEN_DANG_NHAP'];
-        //dong kêt nối
-         $connect->close();
-        if($data!=null && count($data)>0){
-            $_SESSION['customer_name'] = $name;//lay tên người dùng
-            $_SESSION['login']=true;
+        // Đóng kết nối
+        $conn = null;
+
+        if ($result != null && count($result) > 0) {
+            $_SESSION['customer_name'] = $usernamel;
+            $_SESSION['login'] = true;
             echo 1;
-            exit() ;
-            //header("Location: ../index.php");// có thể bỏ dn= true vì người dùng có thể sữa dn thành false hoặc true 
-        }
-        else{
+            exit();
+        } else {
             echo 0;
-            exit() ;
-            $_SESSION['login']=false;
-            }
+            exit();
+            $_SESSION['login'] = false;
         }
-           
     }
-    login();
-?>
+}
 
+login();

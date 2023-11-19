@@ -1,76 +1,11 @@
-<style>
-    .product-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        grid-gap: 20px;
-    }
-
-    .product-box {
-        background-color: #f5f5f5;
-        border-radius: 10px;
-        padding: 20px;
-        text-align: center;
-    }
-
-    .product-image {
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-        border-radius: 10px;
-        margin-bottom: 20px;
-    }
-
-    .product-title {
-        font-size: 24px;
-        margin-bottom: 10px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    .product-price {
-        font-size: 16px;
-        color: #888;
-        margin-bottom: 20px;
-    }
-
-    .product-button {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
-
-    .product-button:hover {
-        background-color: #0056b3;
-    }
-
-    .more-button {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: black;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
-
-    .more-button:hover {
-        background-color: #ddd;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="css/product_index.css">
 
 <div class="product-list">
-
     <?php
-    $query = "SELECT * FROM bestseller";
-    $result = mysqli_query($conn, $query);
-
-    // Hiển thị danh sách sản phẩm
-    while ($row = mysqli_fetch_assoc($result)) {
+    $stmt = $conn->prepare("SELECT * FROM bestseller");
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($result as $row) {
         echo "<div class='product-box'>";
         echo "<img src='images/product/" . $row['image'] . "' alt='Product Image' class='product-image'>";
         echo "<h3 class='product-title'>" . $row['name'] . "</h3>";
@@ -80,7 +15,6 @@
                     </form>";
         echo "</div>";
     }
-
     ?>
 </div>
 <form action='all_product.php' method='post' class="d-flex justify-content-center align-items-center">

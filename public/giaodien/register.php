@@ -6,10 +6,9 @@ if (isset($_SESSION['mail_error']) && !empty($_SESSION['mail_error'])) $checkmai
 <html lang="en">
 
 <head>
-  <!-- Required meta tags-->
   <meta charset="UTF-8">
+  <link rel="icon" href="../images/Ilogo.png" type="image/png" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- Title Page-->
   <title>Đăng Ký Tài Khoản </title>
   <link rel="stylesheet" type="text/css" href="../css/register.css">
   <script src="../js/validate.js"> </script>
@@ -74,14 +73,11 @@ if (isset($_SESSION['mail_error']) && !empty($_SESSION['mail_error'])) $checkmai
       });
     });
   </script>
-  <!-- check mail -->
   <script type="text/javascript">
     $(document).ready(function() {
       $("#email").change(function() {
         var email_error = $("#email-error");
-        // resert 2 thẻ div thông báo trở về rỗng mỗi khi click nút đăng nhập
         email_error.html("");
-        //  kiểm tra email đăng ký hợp lệ hay chưa
         $.ajax({
           url: 'check_mail_register.php',
           method: 'POST',
@@ -90,7 +86,7 @@ if (isset($_SESSION['mail_error']) && !empty($_SESSION['mail_error'])) $checkmai
             console.log(response);
             if (response == 0) {
               email_error.html("Email đã được đăng ký.Vui lòng chọn Email khác");
-            } else email_error.html(""); //alert(response);
+            } else email_error.html("");
 
           }
 
@@ -114,13 +110,11 @@ if (isset($_SESSION['mail_error']) && !empty($_SESSION['mail_error'])) $checkmai
         var user_error = $("#user-error");
         var email_error = $("#email-error");
 
-        // resert 2 thẻ div thông báo trở về rỗng mỗi khi click nút đăng nhập
         user_error.html("");
         email_error.html("");
         pass_error.html("");
         pass_confir_error.html("");
 
-        // Kiểm tra nếu email rỗng thì báo lỗi
         if (username == "") {
           user_error.html("Tên người dùng không được để trống");
           return false;
@@ -129,18 +123,14 @@ if (isset($_SESSION['mail_error']) && !empty($_SESSION['mail_error'])) $checkmai
           email_error.html("Email không được để trống");
           return false;
         }
-        // Kiểm tra nếu password rỗng thì báo lỗi
         if (password == "") {
           pass_error.html("Mật khẩu không được để trống");
           return false;
         }
-        // Kiểm tra nếu password rỗng thì báo lỗi
         if (password_confirmation == "") {
           pass_confir_error.html("Mật khẩu xác nhận không được để trống");
           return false;
         }
-
-        //  kiểm tra thông tin đăng ký hợp lệ hay chưa
         $.ajax({
           url: './action_register.php',
           method: 'POST',
@@ -152,17 +142,12 @@ if (isset($_SESSION['mail_error']) && !empty($_SESSION['mail_error'])) $checkmai
               window.location = "login.php";
             } else {
               email_error.html("Email đã được đăng ký.Vui lòng chọn Email khác");
-            } //alert(response);
-
+            }
           }
-
         })
-
       });
-
     });
   </script>
-
 
   </body>
 
