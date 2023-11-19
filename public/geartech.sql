@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 17, 2023 lúc 06:23 AM
+-- Thời gian đã tạo: Th10 19, 2023 lúc 10:44 AM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 7.4.33
 
@@ -52,12 +52,62 @@ INSERT INTO `bestseller` (`id`, `image`, `name`, `price`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `chitiethoadon`
+--
+
+CREATE TABLE `chitiethoadon` (
+  `macthd` int(11) NOT NULL,
+  `mahd` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `soluong` int(11) NOT NULL,
+  `dongia` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitiethoadon`
+--
+
+INSERT INTO `chitiethoadon` (`macthd`, `mahd`, `id`, `soluong`, `dongia`) VALUES
+(1, 1, 9, 1, 29790000),
+(2, 2, 9, 1, 29790000),
+(3, 3, 2, 1, 18990000),
+(5, 5, 2, 2, 37980000);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `hoadon`
+--
+
+CREATE TABLE `hoadon` (
+  `mahd` int(11) NOT NULL,
+  `MA_TK` int(10) UNSIGNED NOT NULL,
+  `diachi` text NOT NULL,
+  `sdt` varchar(10) NOT NULL,
+  `tongtien` float NOT NULL,
+  `ngaylap` datetime NOT NULL,
+  `tinhtrang` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `hoadon`
+--
+
+INSERT INTO `hoadon` (`mahd`, `MA_TK`, `diachi`, `sdt`, `tongtien`, `ngaylap`, `tinhtrang`) VALUES
+(1, 14, 'ct', '0123456789', 29790000, '2023-11-19 01:59:45', 1),
+(2, 14, 'ct', '0123456789', 29790000, '2023-11-19 02:01:57', -1),
+(3, 14, 'ct', '0123456789', 18990000, '2023-11-19 02:02:15', 0),
+(5, 15, 'CanTho', '0123456789', 37980000, '2023-11-19 03:39:46', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `products`
 --
 
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
-  `name` text CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `tensp` text CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `price` int(11) NOT NULL,
   `image` text NOT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
@@ -68,16 +118,16 @@ CREATE TABLE `products` (
 -- Đang đổ dữ liệu cho bảng `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `price`, `image`, `description`, `soluong`) VALUES
+INSERT INTO `products` (`id`, `tensp`, `price`, `image`, `description`, `soluong`) VALUES
 (1, 'Loa vi tính Fenda F670x', 1390000, 'loa-vi-tinh-fenda-f670x.jpg', 'Trong một bộ loa của 2.1 Fenda F670X sẽ bao gồm: 1 loa siêu trầm (loa giữa) và 2 loa vệ tinh. Khi nhìn vào tổng thể của loa vi tính 2.1 Fenda F670X, mình rất ấn tượng khi thiết bị sở hữu một ngoại hình không quá to với kích thước của phần loa giữa là 6.5 inch và đủ để bạn đặt kế một bộ PC trên bàn. Không những thế, loa vi tính 2.1 Fenda F670X còn được làm tương đối nhẹ khi chỉ nặng 4.2 kg. Con số này tuy không quá ấn tượng nhưng đủ để khiến bạn thoải mái và dễ dàng khi chi chuyển và lắp đặt hơn.', 10),
-(2, 'ASUS-TUF-Gaming FX517ze-i5', 18990000, 'asus-tuf-gaming-fx517ze-i5.jpg', 'Asus TUF Dash F15 FX517ZC-HN077W là chiếc laptop gaming siêu nhỏ gọn, bền bỉ đạt chuẩn quân đội trang bị bộ vi xử lý Intel thế hệ thứ 12 mới nhất, cho bạn chơi game linh hoạt mọi lúc mọi nơi.', 4),
+(2, 'ASUS-TUF-Gaming FX517ze-i5', 18990000, 'asus-tuf-gaming-fx517ze-i5.jpg', 'Asus TUF Dash F15 FX517ZC-HN077W là chiếc laptop gaming siêu nhỏ gọn, bền bỉ đạt chuẩn quân đội trang bị bộ vi xử lý Intel thế hệ thứ 12 mới nhất, cho bạn chơi game linh hoạt mọi lúc mọi nơi.', 0),
 (3, 'MSI-Gaming GF63-Thin-11SC-i5', 15040000, 'msi-gaming-gf63-thin-11sc-i5.jpg', 'Mang trong mình sức mạnh hiệu năng của bộ vi xử lý Intel Core i5 dòng H mạnh mẽ và card đồ họa rời NVIDIA GeForce GTX, laptop MSI Gaming GF63 Thin 11SC i5 (664VN) có khả năng chiến game nặng và thiết kế đồ họa một cách mượt mà.', 0),
 (4, 'Camera-ip-360-do-1080p', 590000, 'camera-ip-360-do-1080p.jpg', 'Camera IP 360 Độ 1080P IMOU Ranger 2C TA22CP với kiểu dáng nhỏ gọn, chân đế bằng phẳng giúp dễ dàng lắp đặt, camera hỗ trợ ghi lại bao quát không gian xung quanh với độ sắc nét cao, hứa hẹn mang đến người dùng những trải nghiệm tốt nhất.', 6),
-(5, 'Viewsonic-Gaming VX2728j 27inch FullHD', 4800000, 'viewsonic-gaming-vx2728j-27-inch-fullhd.jpg', 'Bạn đang tìm kiếm một màn hình gaming chất lượng cao để nâng cao trải nghiệm chơi game của mình. Màn hình ViewSonic Gaming VX2728J 27 inch Full HD với tấm nền IPS hỗ trợ tần số quét 165 Hz, công nghệ AMD FreeSync Premium và nhiều tính năng nổi bật khác sẽ mang đến cho bạn một trải nghiệm chơi game mượt mà, chân thực và sống động.', 3),
+(5, 'Viewsonic-Gaming VX2728j 27inch FullHD', 4800000, 'viewsonic-gaming-vx2728j-27-inch-fullhd.jpg', 'Bạn đang tìm kiếm một màn hình gaming chất lượng cao để nâng cao trải nghiệm chơi game của mình. Màn hình ViewSonic Gaming VX2728J 27 inch Full HD với tấm nền IPS hỗ trợ tần số quét 165 Hz, công nghệ AMD FreeSync Premium và nhiều tính năng nổi bật khác sẽ mang đến cho bạn một trải nghiệm chơi game mượt mà, chân thực và sống động.', 2),
 (6, 'Apple Watch SE 2023', 6100000, 'apple-watch-se-2023.jpg', 'Sở hữu thiết kế hiện đại, đầy đủ các tính năng sức khỏe, chế độ luyện tập đa dạng, hệ điều hành phiên bản mới thêm nhiều tiện ích hơn, giao diện thân thiện với người dùng,... chiếc Apple Watch SE 2023 GPS + Cellular 44mm viền nhôm dây thể thao sẽ sẵn sàng đồng hành cùng bạn trong mọi hoạt động thường nhật.', 0),
 (7, 'HonorPad X9', 3890000, 'honor-pad-x9.jpg', 'Honor Pad X9 là mẫu máy tính bảng mới được nhà Honor cho ra mắt sau khoảng thời gian dài vắng bóng tại Việt Nam, lần ra mắt này hãng mang tới một sản phẩm có giá thành rẻ, hiệu năng tốt cùng pin lớn giúp đáp ứng dài lâu cho mọi tác vụ.', 20),
-(8, 'Iphone 15 pro max', 34190000, 'iphone-15-pro-max.jpg', 'iPhone 15 Pro Max là một chiếc điện thoại thông minh cao cấp được mong đợi nhất năm 2023. Với nhiều tính năng mới và cải tiến, iPhone 15 Pro Max chắc chắn sẽ là một lựa chọn tuyệt vời cho những người dùng đang tìm kiếm một chiếc điện thoại có hiệu năng mạnh mẽ, camera chất lượng và thiết kế sang trọng.', 12),
-(9, 'Iphone 14 Pro Max 256G', 29790000, 'iphone-14-pro.jpg', 'Mới đây thì chiếc điện thoại iPhone 14 Pro Max 256GB cũng đã được chính thức lộ diện trên toàn cầu và đập tan bao lời đồn đoán bấy lâu nay, bên trong máy sẽ được trang bị con chip hiệu năng khủng cùng sự nâng cấp về camera đến từ nhà Apple.', 10),
+(8, 'Iphone 15 pro max', 34190000, 'iphone-15-pro-max.jpg', 'iPhone 15 Pro Max là một chiếc điện thoại thông minh cao cấp được mong đợi nhất năm 2023. Với nhiều tính năng mới và cải tiến, iPhone 15 Pro Max chắc chắn sẽ là một lựa chọn tuyệt vời cho những người dùng đang tìm kiếm một chiếc điện thoại có hiệu năng mạnh mẽ, camera chất lượng và thiết kế sang trọng.', 10),
+(9, 'Iphone 14 Pro Max 256G', 29790000, 'iphone-14-pro.jpg', 'Mới đây thì chiếc điện thoại iPhone 14 Pro Max 256GB cũng đã được chính thức lộ diện trên toàn cầu và đập tan bao lời đồn đoán bấy lâu nay, bên trong máy sẽ được trang bị con chip hiệu năng khủng cùng sự nâng cấp về camera đến từ nhà Apple.', 8),
 (10, 'OPPO Reno10 5G 256GB', 10490000, 'oppo-reno10.jpg', 'Là một trong những chiếc smartphone mới nhất của OPPO trên thị trường hiện nay, OPPO Reno10 5G mang trên mình bộ áo đẹp mắt, hiệu năng ổn định đi cùng với đó là khả năng nhiếp ảnh vượt trội, đáp ứng mượt mà hầu hết các nhu cầu của người dùng.', 14),
 (11, 'Vivo Y02T', 2990000, 'vivo-y02t.jpg', 'Điện thoại vivo Y02T là một trong những sản phẩm mới của vivo, hãng smartphone nổi tiếng của Trung Quốc. Tuy thuộc phân khúc giá rẻ, nhưng vẫn có những tính năng nổi bật như pin lớn 5000 mAh, màn hình IPS LCD 6.51 inch, bộ xử lý Helio P35 và bộ nhớ lưu trữ 64 GB.', 2),
 (12, 'IPhone 13 128GB', 16390000, 'iphone-13.jpg', 'Trong khi sức hút đến từ bộ 4 phiên bản iPhone 12 vẫn chưa nguội đi, thì hãng điện thoại Apple đã mang đến cho người dùng một siêu phẩm mới iPhone 13 với nhiều cải tiến thú vị sẽ mang lại những trải nghiệm hấp dẫn nhất cho người dùng.', 3),
@@ -95,48 +145,6 @@ INSERT INTO `products` (`id`, `name`, `price`, `image`, `description`, `soluong`
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `slider`
---
-
-CREATE TABLE `slider` (
-  `ID` int(11) NOT NULL,
-  `src` varchar(50) NOT NULL,
-  `active` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
-
---
--- Đang đổ dữ liệu cho bảng `slider`
---
-
-INSERT INTO `slider` (`ID`, `src`, `active`) VALUES
-(1, 'img1.png', 1),
-(2, 'img2.png', 1),
-(3, 'img3.png', 1),
-(4, 'img4.png', 1),
-(5, 'img5.png', 1),
-(6, 'img6.png', 1),
-(1, 'img1.png', 1),
-(2, 'img2.png', 1),
-(3, 'img3.png', 1),
-(4, 'img4.png', 1),
-(5, 'img5.png', 1),
-(6, 'img6.png', 1),
-(1, 'img1.png', 1),
-(2, 'img2.png', 1),
-(3, 'img3.png', 1),
-(4, 'img4.png', 1),
-(5, 'img5.png', 1),
-(6, 'img6.png', 1),
-(1, 'img1.png', 1),
-(2, 'img2.png', 1),
-(3, 'img3.png', 1),
-(4, 'img4.png', 1),
-(5, 'img5.png', 1),
-(6, 'img6.png', 1);
-
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `taikhoan`
 --
 
@@ -145,17 +153,18 @@ CREATE TABLE `taikhoan` (
   `TEN_DANG_NHAP` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `MAT_KHAU` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `STATUS` int(1) NOT NULL DEFAULT 1,
-  `EMAIL` varchar(50) NOT NULL
+  `EMAIL` varchar(50) NOT NULL,
+  `PHONE` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `DIA_CHI` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `taikhoan`
 --
 
-INSERT INTO `taikhoan` (`MA_TK`, `TEN_DANG_NHAP`, `MAT_KHAU`, `STATUS`, `EMAIL`) VALUES
-(1, 'admin', 'admin', 1, ''),
-(6, 'congtru', 'ebf59acde7bad4e55c2bb717f778a417', 1, 'congtru1209@gmail.com'),
-(7, 'root', 'ebf59acde7bad4e55c2bb717f778a417', 1, 'abc@gmail.com');
+INSERT INTO `taikhoan` (`MA_TK`, `TEN_DANG_NHAP`, `MAT_KHAU`, `STATUS`, `EMAIL`, `PHONE`, `DIA_CHI`) VALUES
+(14, 'n.h.congtru1209', '21232f297a57a5a743894a0e4a801fc3', 1, 'n.h.congtru1209@gmail.com', '0399750925', 'Can Tho'),
+(15, 'n.h.congtru', '21232f297a57a5a743894a0e4a801fc3', 1, 'congtru1209@gmail.com', '', '');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -166,6 +175,21 @@ INSERT INTO `taikhoan` (`MA_TK`, `TEN_DANG_NHAP`, `MAT_KHAU`, `STATUS`, `EMAIL`)
 --
 ALTER TABLE `bestseller`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `chitiethoadon`
+--
+ALTER TABLE `chitiethoadon`
+  ADD PRIMARY KEY (`macthd`),
+  ADD KEY `mahd` (`mahd`,`id`),
+  ADD KEY `sphd` (`id`);
+
+--
+-- Chỉ mục cho bảng `hoadon`
+--
+ALTER TABLE `hoadon`
+  ADD PRIMARY KEY (`mahd`),
+  ADD KEY `MA_TK` (`MA_TK`);
 
 --
 -- Chỉ mục cho bảng `products`
@@ -185,10 +209,39 @@ ALTER TABLE `taikhoan`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `chitiethoadon`
+--
+ALTER TABLE `chitiethoadon`
+  MODIFY `macthd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT cho bảng `hoadon`
+--
+ALTER TABLE `hoadon`
+  MODIFY `mahd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT cho bảng `taikhoan`
 --
 ALTER TABLE `taikhoan`
-  MODIFY `MA_TK` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `MA_TK` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `chitiethoadon`
+--
+ALTER TABLE `chitiethoadon`
+  ADD CONSTRAINT `cthd` FOREIGN KEY (`mahd`) REFERENCES `hoadon` (`mahd`),
+  ADD CONSTRAINT `sphd` FOREIGN KEY (`id`) REFERENCES `products` (`id`);
+
+--
+-- Các ràng buộc cho bảng `hoadon`
+--
+ALTER TABLE `hoadon`
+  ADD CONSTRAINT `tkorder` FOREIGN KEY (`MA_TK`) REFERENCES `taikhoan` (`MA_TK`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
