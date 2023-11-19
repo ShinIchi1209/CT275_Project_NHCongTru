@@ -132,9 +132,9 @@ if (isset($_SESSION["cart_item"]))
 		</div>
 		<div class="col-md-6 col-sm-6">
 			<button class="btn btn-ouline-success" onclick="checkLogin()">Đặt Hàng</button>
-			<form action="<?php echo  $_SERVER['REQUEST_URI']; ?>" method="POST">
+			<form id="cart_form" action="<?php echo  $_SERVER['REQUEST_URI']; ?>" method="POST">
 				<input type="hidden" name="cart" value="empty">
-				<button type="submit" class="btn btn-ouline-warning">Làm Trống</button>
+				<button  type="submit" class="btn btn-ouline-warning">Làm Trống</button>
 			</form>
 		</div>
 	</div>

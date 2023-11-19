@@ -20,14 +20,7 @@ $resultHD = $stmthd->fetchAll(PDO::FETCH_ASSOC);
 	<div class="side-menu col-md-3 sol-sm-12">
 		<div class="username ">
 			<i class="far fa-user-circle font "></i>
-			Tài khoản của <br> <span class="font" style="padding-left: 22%;"><?php echo $row_customer['TEN_DANG_NHAP']  ?></span>
-		</div>
-		<div class="submenu">
-			<ul>
-				<li class="subc font" onclick=""><a href="index.php?quanly=user">Thông tin chung</a></li>
-
-				<li class="subc font" onclick="document.getElementById('donhang').style.display='block'">Đơn hàng của tôi</li>
-			</ul>
+			Tài khoản của <br> <span class="font " style="padding-left: 22%;"><?php echo $row_customer['TEN_DANG_NHAP']  ?></span>
 		</div>
 	</div>
 	<div class="information col-md-9 sol-sm-12">

@@ -35,8 +35,9 @@ if (isset($_POST["delivery"])) {
 		$stmtct->execute();
 		$stmtup = $conn->prepare("UPDATE products SET soluong=$newQuanlity WHERE id='" . $_SESSION["cart_item"][$k]["id"] . "'");
 		$stmtup->execute();
+		$checkPay = true;
 	}
-	$checkPay = true;
+	
 }
 ?>
 <link rel="stylesheet" type="text/css" href="css/deliveryInfor.css">
@@ -59,6 +60,7 @@ if (isset($_POST["delivery"])) {
 			return 0;
 		}
 		delInfor_form.submit();
+		
 	}
 
 	function hideDelInfor() {
@@ -67,16 +69,16 @@ if (isset($_POST["delivery"])) {
 </script>
 <div id="delInfor_container">
 	<div id="delInfor_title">
-		<div id="delInfor_XSign" onclick="hideDelInfor()">X</div>
+		<div class="mr-2" id="delInfor_XSign" onclick="hideDelInfor()">X</div>
 		<h5 style="color:white; line-height:50px">THÔNG TIN GIAO HÀNG</h5>
 	</div>
 	<div style="text-align:left; margin-left:30px">
 		<form id="delInfor_form" action="<?php echo  $_SERVER['REQUEST_URI']; ?>" method="post">
 			<input type="hidden" name="delivery" value="1">
 			<div style="margin-top:20px"><b>Địa chỉ:</b></div>
-			<input id="txAddress_delInfor" name="address_delInfor" type="text">
+			<input class="border-2" id="txAddress_delInfor" name="address_delInfor" type="text">
 			<div style="margin-top:10px"><b>Số điện thoại:</b></div>
-			<input id="txPhone_delInfor" name="phone_delInfor" type="text">
+			<input class="border-2" id="txPhone_delInfor" name="phone_delInfor" type="text">
 		</form>
 	</div>
 	<div style="margin-top:25px; text-align:center">
@@ -84,20 +86,9 @@ if (isset($_POST["delivery"])) {
 	</div>
 </div>
 <script>
-	function loadInfor() {
-		var address, phone;
-		address = "<?php
-					if (isset($_SESSION['customer_name']))
-						echo $address;
-					?>";
-		phone = "<?php
-					if (isset($_SESSION['customer_name']))
-						echo $phone;
-					?>";
-		document.getElementById("txAddress_delInfor").value = address;
-		document.getElementById("txPhone_delInfor").value = phone;
-	}
-	loadInfor();
-	if (<?php echo "$checkPay" ?>)
+	if (<?php echo "$checkPay" ?>){
 		alert("Cảm ơn quý khách đã mua hàng");
+		document.getElementById("cart_form").submit();
+	}
+		
 </script>

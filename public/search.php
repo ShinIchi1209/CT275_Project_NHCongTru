@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-header("Content-Security-Policy: script-src 'self'");
-
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +59,7 @@ header("Content-Security-Policy: script-src 'self'");
 		</script>
 		<div class="ads-grid py-sm-5 py-4 all-product ">
 			<div class="title_search ">
-				<span class="keyword_search">TÌM KIẾM THEO TỪ KHOÁ: <strong><?php echo $tukhoa ?></strong></span>
+				<span class="keyword_search">TÌM KIẾM THEO TỪ KHOÁ: <strong><?php echo htmlspecialchars($tukhoa, ENT_QUOTES, 'UTF-8') ?></strong></span>
 			</div>
 			<h1 class="no_result_search"><?php echo $title_result ?> </h1>
 			<div class="product-list ">
