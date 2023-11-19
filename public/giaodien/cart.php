@@ -1,10 +1,8 @@
 <?php
-$connect = new mysqli("localhost", "root", "", "geartech");
-$connect->set_charset("utf8");
-?>
-<?php
-require_once("dbcontroller.php");
-$db_handle = new DBController();
+$connect = new PDO("mysql:host=localhost;dbname=geartech", "root", "");
+
+require("vendor/autoload.php");
+$db_handle = new \controllers\dbcontroller();
 if (!empty($_POST["cart"])) {
 	switch ($_POST["cart"]) {
 		case "add":

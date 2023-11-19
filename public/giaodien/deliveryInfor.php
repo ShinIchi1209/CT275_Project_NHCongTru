@@ -1,8 +1,9 @@
 <?php
 $checkPay = 0;
-$connect = new PDO("mysql:host=localhost;dbname=geartech", "root", "");
-require_once("dbcontroller.php");
-$db_handle = new DBController();
+$conn = new PDO("mysql:host=localhost;dbname=geartech", "root", "");
+
+require_once 'vendor/autoload.php';
+$db_handle = new \controllers\dbcontroller();
 if (isset($_SESSION['customer_name'])) {
 	$username = $_SESSION['customer_name'];
 	$inforUser = $db_handle->runQuery("SELECT MA_TK FROM taikhoan where TEN_DANG_NHAP='$username'");
@@ -35,7 +36,7 @@ if (isset($_POST["delivery"])) {
 		$stmtup = $conn->prepare("UPDATE products SET soluong=$newQuanlity WHERE id='" . $_SESSION["cart_item"][$k]["id"] . "'");
 		$stmtup->execute();
 	}
-	$checkPay = 1;
+	$checkPay = true;
 }
 ?>
 <link rel="stylesheet" type="text/css" href="css/deliveryInfor.css">

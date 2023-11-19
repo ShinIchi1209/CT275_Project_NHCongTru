@@ -87,7 +87,7 @@
             }
             if (response == -1) {
               error.html("Tài Khoản đã bị Khoá");
-            }
+            } 
 
           }
 

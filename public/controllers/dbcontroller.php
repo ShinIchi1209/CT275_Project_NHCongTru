@@ -1,5 +1,7 @@
 <?php
-class DBController
+namespace controllers;
+
+class dbcontroller 
 {
 	private $host = "localhost";
 	private $user = "root";

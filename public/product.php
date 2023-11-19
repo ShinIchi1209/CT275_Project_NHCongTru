@@ -1,6 +1,5 @@
 <?php
 session_start();
-include("db_connect.php");
 
 ?>
 
@@ -12,6 +11,7 @@ include("db_connect.php");
     <link rel="icon" href="images/Ilogo.png" type="image/png" />
     <link rel="stylesheet" type="text/css" href="index.css">
     <link rel="stylesheet" type="text/css" href="css/product.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
 </head>
@@ -53,8 +53,8 @@ include("db_connect.php");
 
     <div class="detail">
         <div style="margin: 30px 0;" class="row chitiet">
-            <div class="col-md-6 col-sm-12 images" style="padding-right: 5ex;">
-                <div class="wrap" style="padding-right: 5ex;">
+            <div class="col-md-6 col-sm-12 images pr-5">
+                <div class="wrap pr-5">
                     <img id="myImgDetail" class="item img-fluid" src="images/product/<?php echo $row['image'] ?>" id="img-product-detail">
                 </div>
             </div>
@@ -65,10 +65,10 @@ include("db_connect.php");
                     <strong style="color: red;font-size: 29px"> <?php echo number_format($row['price']); ?> VNĐ</strong>
                 </div>
                 <div class="possibility-chitiet">
-                    <span style="    color: #5F4C0B;font-weight: bold;">Tình trạng:</span>
+                    <span style="color: #5F4C0B;font-weight: bold;">Tình trạng:</span>
                     <strong class="warn"><?php echo $checksoluong ?></strong>( Còn: <?php echo $sum ?> sản phẩm )
                 </div>
-                <hr style=" boder: 2ex solid rgb(19, 17, 17); margin: 2ex 3px;">
+                <hr style="border: 2ex solid rgb(19, 17, 17); margin: 2ex 3px;">
                 <div class="details">
                     <span style="text-decoration: underline;">Điểm nổi bật</span>
                     <p> <?php echo $row['description'] ?> </p>

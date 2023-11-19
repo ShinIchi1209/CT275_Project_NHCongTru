@@ -131,6 +131,7 @@ if (isset($_SESSION['mail_error']) && !empty($_SESSION['mail_error'])) $checkmai
           pass_confir_error.html("Mật khẩu xác nhận không được để trống");
           return false;
         }
+
         $.ajax({
           url: './action_register.php',
           method: 'POST',
@@ -142,12 +143,17 @@ if (isset($_SESSION['mail_error']) && !empty($_SESSION['mail_error'])) $checkmai
               window.location = "login.php";
             } else {
               email_error.html("Email đã được đăng ký.Vui lòng chọn Email khác");
-            }
+            } //alert(response);
+
           }
+
         })
+
       });
+
     });
   </script>
+
 
   </body>
 

@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+header("Content-Security-Policy: script-src 'self'");
+
 ?>
 
 <!DOCTYPE html>
@@ -10,6 +13,7 @@ session_start();
 	<title>Gear Tech</title>
 	<link rel="stylesheet" type="text/css" href="index.css">
 	<link rel="stylesheet" type="text/css" href="css/search.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
 
@@ -17,6 +21,10 @@ session_start();
 
 <body>
 	<div class="container-fluid  ">
+		<?php
+		include("giaodien/cart.php");
+		include("giaodien/deliveryInfor.php");
+		?>
 		<?php require("giaodien/header.php") ?>
 		<?php require("giaodien/navigation.php") ?>
 		<a href="javascript:history.back()" class="back-button">Quay lại</a>
@@ -36,6 +44,8 @@ session_start();
 		}
 		?>
 		<script>
+			$tukhoa = escapeHtml($tukhoa)
+
 			function getresult(url) {
 				$.ajax({
 					url: url,

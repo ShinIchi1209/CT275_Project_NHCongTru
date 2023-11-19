@@ -9,10 +9,10 @@
                 <a class="nav-link " href="all_product.php">SẢN PHẨM</a>
             </li>
         </ul>
-        <div class="nav-item icon right">
+        <div class="nav-item icon ml-auto">
             <form action="search.php" method="post">
-                <input class="search" type="text" style="color: #333;" placeholder="Tìm Kiếm..." name="search_product">
-                <button class="btn btn-outline-success my-2 my-sm-0 openBtn  " type="submit" name="search_submit"><i class="fa fa-search  text-light"></i></button>
+                <input class="search mt-2 mr-2" type="text" style="color: #333;" placeholder="Tìm Kiếm..." name="search_product">
+                <button class="btn btn-outline-success my-2 my-sm-0 openBtn " type="submit" name="search_submit"><i class="fa fa-search  text-light"></i></button>
             </form>
         </div>
         <div class="nav-item icon " style="margin-right: 5px;" onclick="showCartContainer()">
